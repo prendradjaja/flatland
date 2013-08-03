@@ -2,6 +2,7 @@ import sys
 import tkinter
 import geometry
 from util import Clipper
+from render2d import Renderer2D
 
 FRAME_RATE = 30
 
@@ -20,6 +21,7 @@ mycanvas = tkinter.Canvas(root, width=600, height=400, background='white')
 mycanvas.pack()
 
 world = geometry.World(mycanvas)
+renderer2d = Renderer2D(world, mycanvas, FRAME_RATE)
 
 root.bind('<Motion>', world.update_mouse)
 
@@ -44,5 +46,5 @@ add_demo_polygons(world)
 
 #add_random_polygons(world, 300, 300, 4)
 
-world.draw(mycanvas, FRAME_RATE)
+renderer2d.draw()
 root.mainloop()
