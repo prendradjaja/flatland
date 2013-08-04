@@ -1,12 +1,12 @@
 import tkinter
-from render1d import Renderer1D
+from renderer1d import Renderer1D
 
 class Renderer2D:
-    def __init__(self, world, canvas, frame_rate):
+    def __init__(self, world, canvas, frame_rate, renderer1d):
         self.world = world
         self.canvas = canvas
         self.frame_rate = frame_rate
-        self.renderer1d = Renderer1D(world, canvas)
+        self.renderer1d = renderer1d
 
     def draw(self):
         self.canvas.delete(tkinter.ALL)

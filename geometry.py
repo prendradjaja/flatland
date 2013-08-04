@@ -1,4 +1,5 @@
 import math
+import random
 from vec2d import Vec2d
 
 class World:
@@ -40,6 +41,20 @@ class World:
             slice_right = left + (s+1)*(width/slices)
             slicerect = [slice_left, top, slice_right, bottom]
             canvas.create_rectangle(*slicerect, fill=gray, width=0)
+
+    def add_random_polygons(self, width, height, n):
+        for _ in range(n):
+            self.add_regular_polygon(random.randint(3, 7),
+                                      random.randint(0, width),
+                                      random.randint(0, height),
+                                      random.randint(20, 70),
+                                      random.randint(0, 360))
+
+    def add_demo_polygons(self):
+        self.add_regular_polygon(5, 22, 29, 68, 62)
+        self.add_regular_polygon(6, 125, 89, 28, 332)
+        self.add_regular_polygon(4, 185, 298, 63, 76)
+        self.add_regular_polygon(3, 89, 160, 50, 187)
 
 class RegularPolygon:
     names = [None, None, None,

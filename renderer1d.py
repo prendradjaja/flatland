@@ -30,9 +30,10 @@ def hexgray(num):
 
 
 class Renderer1D:
-    def __init__(self, world, canvas):
+    def __init__(self, world, canvas, slices):
         self.world = world
         self.canvas = canvas
+        self.slices = slices
 
     def draw(self, viewrect):
         """viewrect: coordinates where the viewing rectangle should be placed.
@@ -46,10 +47,10 @@ class Renderer1D:
         outlinerect = left-1, top-1, right, bottom
         width = right - left
         self.canvas.create_rectangle(*viewrect)
-        slices = 30
-        slicewidth = width/(slices+1)
-        for x in range(0, slices+1):
-            ray = Ray(obsx, obsy, obsangle + obsfov/2 - x*obsfov/slices, self.canvas)
+        slices = self.slices
+        slicewidth = width/(slices)
+        for x in range(0, slices):
+            ray = Ray(obsx, obsy, obsangle + obsfov/2 - x*obsfov/(slices-1), self.canvas)
             draw_sight_line(self.canvas, ray)
             gray = self.ray_trace(ray)
             self.canvas.create_rectangle(left + x*slicewidth, top, left + (x+1)*slicewidth, bottom, fill=gray, width=0)
