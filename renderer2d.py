@@ -12,5 +12,5 @@ class Renderer2D:
         self.canvas.delete(tkinter.ALL)
         for shape in self.world.shapes:
             self.canvas.create_polygon(shape.coords)
-        self.renderer1d.draw([300, 300, 600, 400])
+        self.renderer1d.draw()
         self.canvas.after(1000 // self.frame_rate, self.draw)
